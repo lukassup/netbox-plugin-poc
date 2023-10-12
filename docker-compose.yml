@@ -1,0 +1,23 @@
+---
+volumes:
+  netbox-redis-data:
+  netbox-postgres-data:
+
+services:
+  redis-cache:
+    image: redis:7-alpine
+    ports:
+      - '127.0.0.1:6379:6379/tcp'
+    volumes:
+    - netbox-redis-data:/data
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - '127.0.0.1:5432:5432/tcp'
+    environment:
+      POSTGRES_USER: netbox
+      POSTGRES_PASSWORD: netbox
+    volumes:
+    - netbox-postgres-data:/var/lib/postgresql/data
+

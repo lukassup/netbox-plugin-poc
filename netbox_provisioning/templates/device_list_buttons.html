@@ -1,0 +1,10 @@
+{% load buttons %}
+{% load i18n %}
+
+{% if perms.dcim.change_device %}
+<div class="btn-group" role="group">
+    <button type="submit" name="_provision" formaction="{% url 'plugins:netbox_provisioning:bulk_provision' %}?return_url={% url 'plugins:netbox_provisioning:list' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-warning btn-sm">
+    <i class="mdi mdi-hammer" aria-hidden="true"></i> {% trans "Provision" %}
+    </button>
+</div>
+{% endif %}
